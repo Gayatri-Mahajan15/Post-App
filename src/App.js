@@ -1,9 +1,15 @@
-// import LoginForm from "./components/LoginForm";
+import HomePage from "./screens/HomePage";
+import LoginForm from "./screens/LoginForm";
+import RegistrationForm from "./screens/RegistrationForm";
 
 function App() {
   return (
-    // <LoginForm />
-    <div>hiii</div>
+    // <div>hiii</div>
+    <div>
+    <LoginForm />
+    <RegistrationForm />
+    <HomePage />
+    </div>
   );
 }
 
