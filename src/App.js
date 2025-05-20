@@ -1,16 +1,23 @@
 import HomePage from "./screens/HomePage";
-import LoginForm from "./screens/LoginForm";
-import RegistrationForm from "./screens/RegistrationForm";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
+import { Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider
+ } from "react-router-dom";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+  <Route path="/" element={<Register />}>
+    <Route index element={<Login />} /> 
+    <Route path="/home" element={<HomePage />} />   
+  </Route>
+ )
+);
 
 function App() {
-  return (
-    // <div>hiii</div>
-    <div>
-    <LoginForm />
-    <RegistrationForm />
-    <HomePage />
-    </div>
-  );
-}
+  return <RouterProvider router={router} />;
+};
 
 export default App;
