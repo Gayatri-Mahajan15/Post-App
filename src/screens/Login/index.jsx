@@ -1,9 +1,17 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import './index.css';
 import { Link } from 'react-router-dom';
+import smInstance from '../../utils/smInstance';
 
 const Login = () => {
-    
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    smInstance.get('/posts') 
+      .then((res) => setData(res.data))
+      .catch((err) => console.error(err));
+  }, []);
+
  return (
   <div>
    <Link to={"/home"}>Home</Link>
@@ -29,6 +37,13 @@ const Login = () => {
             <Link to={"/register"}>Sign up</Link>
             </div>
         </form>
+        
+        <h1>Posts</h1>
+            <ul>
+                {data.map((post) => (
+                    <li key={post.id}>{post.title}</li>
+                ))}
+            </ul>
         
     </div> 
 );
