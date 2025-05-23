@@ -1,22 +1,10 @@
-// import { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import smInstance from '../../utils/smInstance';
-import React from 'react';
+import { Link } from 'react-router-dom';
+import { registerPath } from '../../utils/routePath';
 
 const Login = () => {
-//   const [data, setData] = useState([]);
-
-//   useEffect(() => {
-//     smInstance.get('/posts') 
-//       .then((res) => setData(res.data))
-//       .catch((err) => console.error(err));
-//   }, []);
-
-return (
+ return (
  <div className="flex items-center justify-center min-h-screen bg-gray-100">
-   {/* <Link to={"/home"}>Home</Link>
-   <Link to={"/register"}>Register</Link> */}
-       
+          
   <form className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm space-y-6">
     <h2 className="text-2xl font-bold text-center text-slate-800">Login</h2>
      <div> 
@@ -44,21 +32,9 @@ return (
             <p className="text-sm text-slate-600">
                   Don't have an account?
                   </p>
-              <a href="/register" className="text-blue-600 text-sm hover:underline">
-                   Sign Up
-              </a>  
-            
-            {/* <Link to={"/register"}>Sign up</Link> */}
+                        
+            <Link to={registerPath} className="text-blue-600 text-sm hover:underline">Sign up</Link>
            </form>
-          
-        {/* <div>
-        <h1>Posts</h1>
-            <ul>
-                {data.map((post) => (
-                    <li key={post.id}>{post.title}</li>
-                ))}
-            </ul>
-        </div> */}
     </div> 
 );
 }

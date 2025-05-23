@@ -1,9 +1,7 @@
-import React from "react";
 
 const Register = () =>  {
  return (
   <div className="flex items-center justify-center min-h-screen bg-gray-100">
-     {/* Please fill the form. */}
       <form className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm space-y-6">
       <h2 className="text-2xl font-bold text-center text-slate-800"> Sign Up </h2>
        <div>
