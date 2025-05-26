@@ -1,116 +1,114 @@
 import { useForm } from "react-hook-form";
+import FormInputField from "../../components/FormInputField";
 
-const Register = () =>  {
-const {
-  register,
-  handleSubmit,
-  watch,
-  formState : { errors }
-} = useForm();
+const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-const onSubmit = (data) => {
-  console.log(data);
-};
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
-const password = watch("password");    // watch password for confirmation
+  const password = watch("password"); // watch password for confirmation
 
- return (
-  <div className="flex items-center justify-center min-h-screen bg-gray-100">
-    <form 
-      onSubmit={handleSubmit(onSubmit)}
-      className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm space-y-6">
-      <h2 className="text-2xl font-bold text-center text-slate-800"> Sign Up </h2>
-    
-    {/* **************** Username */}
-      <div>
-        <input 
-        type="text"
-        placeholder="Username"
-        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        {...register('username', 
-          { required: 'Username is required' })}
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm space-y-6"
+      >
+        <h2 className="text-2xl font-bold text-center text-slate-800">
+          {" "}
+          Sign Up{" "}
+        </h2>
+
+        {/* **************** Username */}
+        <FormInputField
+          type={"text"}
+          placeholder={"Username"}
+          name={"username"}
+          inputHandler={{
+            ...register("username", { required: "Username is required" }),
+          }}
+          errors={errors}
         />
-        {errors.username && <p>{errors.username.message}</p>}
-       </div>
 
-    {/* **************** Email */}
-       <div>
-         <input
-          type="email"
-          placeholder="Email"
-          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-
-          {...register('email', {
-            required: 'Email is required',
-            pattern: {
-              value: /^\S+@\S+$/i,
-              message: 'Invalid email address',
-            },
-          })}
+        {/* **************** Email */}
+        <FormInputField
+          type={"text"}
+          placeholder={"you@gmail.com"}
+          name={"email"}
+          inputHandler={{
+            ...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                message: "Invalid email address",
+              },
+            }),
+          }}
+          errors={errors}
         />
-        {errors.email && <p>{errors.email.message}</p>}
-      </div>
 
-     {/* **************** Phone number */}
-        <div>
-          <input
-           type="tel"
-           placeholder="Phone Number"
-           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-
-           {...register("phone", {
-            required: 'Phone number is required',
-            pattern: {
-              value: /^[0-9]{10}$/,
-              message: 'Phone number must be 10 digits',
-            },
-          })}
+        {/* **************** Phone number */}
+        <FormInputField
+          type={"tel"}
+          placeholder={"Phone Number"}
+          name={"phone"}
+          inputHandler={{
+            ...register("phone", {
+              required: "Phone number is required",
+              pattern: {
+                value: /^[0-9]{10}$/,
+                message: "Phone number must be 10 digits",
+              },
+            }),
+          }}
+          errors={errors}
         />
-        {errors.phone && <p>{errors.phone.message}</p>}
-      </div>
-      
-      {/* **************** Password */}
-        <div>
-          <input 
-           type="password"
-           placeholder="Password"
-           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
 
-           {...register("password", {
-            required: 'Password is required',
-            minLength: {
-              value: 6,
-              message: 'Password should be at least 6 characters',
-            }
-          })}
+        {/* **************** Password */}
+        <FormInputField
+          type={"password"}
+          placeholder={"********"}
+          name={"password"}
+          inputHandler={{
+            ...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Password should be at least 6 characters",
+              },
+            }),
+          }}
+          errors={errors}
         />
-        {errors.password && (<p className="errorMsg">{errors.password.message}</p>
-      )}  
-      </div>
 
-      {/* **************** Confirm Password */}
-       <div>
-          <input 
-           type="password"
-           placeholder="Confirm Password"
-           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-           
-            {...register('confirmPassword', {
-            required: 'Please confirm your password',
-            validate: (value) =>
-              value === password || 'Passwords do not match',
-          })}
+        {/* **************** Confirm Password */}
+         <FormInputField
+          type={"password"}
+          placeholder={"Confirm Password"}
+          name={"confirmPassword"}
+          inputHandler={{
+            ...register("confirmPassword", {
+              required: "Please confirm your password",
+              validate: (value) =>
+                value === password || "Passwords do not match",
+            }),
+          }}
+          errors={errors}
         />
-        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-      </div>       
 
-      {/* **************** Sign up */}
-          <button
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
-            Sign up
-            </button>
-       </form>
-   </div>
+        {/* **************** Sign up */}
+        <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
+          Sign up
+        </button>
+      </form>
+    </div>
   );
 };
 
