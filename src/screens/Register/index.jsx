@@ -1,5 +1,13 @@
 import { useForm } from "react-hook-form";
 import FormInputField from "../../components/FormInputField";
+import {
+  formName,
+  formPlaceholder,
+  formType,
+  regValidators,
+} from "../../utils/uiConstants";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const {
@@ -10,6 +18,9 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    toast.success("Data filled successfully", {
+          position: "top-right"
+        });
     console.log(data);
   };
 
@@ -28,9 +39,9 @@ const Register = () => {
 
         {/* **************** Username */}
         <FormInputField
-          type={"text"}
-          placeholder={"Username"}
-          name={"username"}
+          type={formType.emailType}
+          placeholder={formPlaceholder.username}
+          name={formName.username}
           inputHandler={{
             ...register("username", { required: "Username is required" }),
           }}
@@ -39,14 +50,14 @@ const Register = () => {
 
         {/* **************** Email */}
         <FormInputField
-          type={"text"}
-          placeholder={"you@gmail.com"}
-          name={"email"}
+          type={formType.emailType}
+          placeholder={formPlaceholder.email}
+          name={formName.emailName}
           inputHandler={{
             ...register("email", {
               required: "Email is required",
               pattern: {
-                value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                value: regValidators.emailValidator,
                 message: "Invalid email address",
               },
             }),
@@ -56,14 +67,14 @@ const Register = () => {
 
         {/* **************** Phone number */}
         <FormInputField
-          type={"tel"}
-          placeholder={"Phone Number"}
-          name={"phone"}
+          type={formType.phoneType}
+          placeholder={formPlaceholder.phone}
+          name={formName.phone}
           inputHandler={{
             ...register("phone", {
               required: "Phone number is required",
               pattern: {
-                value: /^[0-9]{10}$/,
+                value: regValidators.phone,
                 message: "Phone number must be 10 digits",
               },
             }),
@@ -73,15 +84,15 @@ const Register = () => {
 
         {/* **************** Password */}
         <FormInputField
-          type={"password"}
-          placeholder={"********"}
-          name={"password"}
+          type={formType.passType}
+          placeholder={formPlaceholder.password}
+          name={formName.passName}
           inputHandler={{
             ...register("password", {
               required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password should be at least 6 characters",
+              pattern: {
+                value: regValidators.passValidator,
+                message: "Incorrect password",
               },
             }),
           }}
@@ -89,10 +100,10 @@ const Register = () => {
         />
 
         {/* **************** Confirm Password */}
-         <FormInputField
-          type={"password"}
-          placeholder={"Confirm Password"}
-          name={"confirmPassword"}
+        <FormInputField
+          type={formType.passType}
+          placeholder={formPlaceholder.confirmPass}
+          name={formName.confirmPass}
           inputHandler={{
             ...register("confirmPassword", {
               required: "Please confirm your password",
@@ -108,6 +119,7 @@ const Register = () => {
           Sign up
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
