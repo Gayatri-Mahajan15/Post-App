@@ -9,6 +9,8 @@ import {
   formType,
   formName,
 } from "../../utils/uiConstants";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const {
@@ -18,6 +20,9 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+     toast.success("Login successfully", {
+      position: "top-right"
+    });
     console.log(data);
   };
 
@@ -66,9 +71,11 @@ const Login = () => {
         />
 
         {/* **************** Login */}
-        <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
+        <button 
+        className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
           Login
         </button>
+        <ToastContainer />
 
         <p className="text-sm text-slate-600">Don't have an account?</p>
 
@@ -79,6 +86,8 @@ const Login = () => {
           Sign up
         </Link>
       </form>
+      <ToastContainer />
+
     </div>
   );
 };

@@ -6,6 +6,8 @@ import {
   formType,
   regValidators,
 } from "../../utils/uiConstants";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const {
@@ -16,6 +18,9 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    toast.success("Data filled successfully", {
+          position: "top-right"
+        });
     console.log(data);
   };
 
@@ -114,6 +119,7 @@ const Register = () => {
           Sign up
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
