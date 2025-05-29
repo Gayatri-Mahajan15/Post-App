@@ -8,6 +8,8 @@ import {
 } from "../../utils/uiConstants";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const Register = () => {
   const {
@@ -27,14 +29,15 @@ const Register = () => {
   const password = watch("password"); // watch password for confirmation
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <>
+    <Header />
+    <div className="flex items-center justify-center min-h-[80vh] p-4 bg-gray-100">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm space-y-6"
       >
         <h2 className="text-2xl font-bold text-center text-slate-800">
-          {" "}
-          Sign Up{" "}
+          Sign Up
         </h2>
 
         {/* **************** Username */}
@@ -118,9 +121,13 @@ const Register = () => {
         <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
           Sign up
         </button>
+        <Footer />
       </form>
       <ToastContainer />
     </div>
+    
+    </>
+    
   );
 };
 
