@@ -11,8 +11,15 @@ import {
 } from "../../utils/uiConstants";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../../AuthContext";
 
 const Login = () => {
+  const { login } = useAuth();
+
+  const handleLogin = () => {
+    login();
+  };
+
   const {
     register,
     handleSubmit,
@@ -72,6 +79,7 @@ const Login = () => {
 
         {/* **************** Login */}
         <button 
+        onClick={handleLogin}
         className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
           Login
         </button>
