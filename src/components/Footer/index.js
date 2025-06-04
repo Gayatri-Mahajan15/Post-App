@@ -21,8 +21,12 @@ const Footer = () => {
       </div>
 
       <div className="flex justify-center gap-4 mt-4">
+<<<<<<< HEAD
         <GoogleOAuthProvider 
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+=======
+        <GoogleOAuthProvider clientId="">
+>>>>>>> e5c97efa962e7c00b7bf68a4069fa62fcb7aa4f9
           <GoogleLogin
             onSuccess={handleGoogleLogin}
             onError={() => console.log("Google login failed")}
@@ -33,7 +37,11 @@ const Footer = () => {
 
       <div className="flex justify-center gap-4 mt-4">
          <ReactFacebookLogin
+<<<<<<< HEAD
           appId={process.env.REACT_APP_FACEBOOK_APP_ID}
+=======
+          appId=""
+>>>>>>> e5c97efa962e7c00b7bf68a4069fa62fcb7aa4f9
           autoLoad={true}
           fields="name,email,picture"
           callback={responseFacebook}
