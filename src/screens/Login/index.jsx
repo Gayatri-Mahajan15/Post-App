@@ -84,7 +84,7 @@ const Login = () => {
 
           <p className="text-sm text-slate-600">Don't have an account?</p>
 
-          <Link
+         <Link
             to={registerPath}
             className="text-blue-600 text-sm hover:underline"
           >
