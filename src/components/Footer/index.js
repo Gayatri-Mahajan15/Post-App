@@ -1,6 +1,8 @@
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { signInWithPopup, TwitterAuthProvider } from "firebase/auth";
 import React from "react";
 import ReactFacebookLogin from "react-facebook-login";
+import { auth } from "../../utils/firebase-config";
 
 const Footer = () => {
   const handleGoogleLogin = (response) => {
@@ -10,6 +12,17 @@ const Footer = () => {
 
   const responseFacebook = (response) => {
     console.log("Facebook response:", response);
+  };
+
+  const handleTwitterLogin = async () => {
+    const provider = new TwitterAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Twitter Login Success:", user);
+    } catch (error) {
+      console.error("Twitter Login Error:", error);
+    }
   };
 
   return (
@@ -38,7 +51,16 @@ const Footer = () => {
           callback={responseFacebook}
         />
       </div>
-    </div>
+
+      <div className="flex justify-center gap-4 mt-4">
+        <button
+          onClick={handleTwitterLogin}
+          className="bg-blue-400 text-white px-4 py-2 rounded"
+        >
+          Login with Twitter
+        </button>
+      </div>
+   </div>
   );
 };
 
